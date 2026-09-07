@@ -1,0 +1,156 @@
+page {
+  background: #f6f7f9;
+  color: #1f2329;
+  font-size: 28rpx;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+}
+
+.page {
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.row-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.muted {
+  color: #8a8f99;
+  font-size: 24rpx;
+}
+
+.title {
+  font-size: 34rpx;
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: 26rpx;
+  color: #4b5563;
+  margin-top: 8rpx;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4rpx 16rpx;
+  border-radius: 999rpx;
+  background: #e8f7ef;
+  color: #0b8f56;
+  font-size: 22rpx;
+  margin-right: 12rpx;
+}
+
+.avatar {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  background: #eef0f3;
+  flex-shrink: 0;
+}
+
+.row-center {
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: block;
+}
+
+.btn-primary,
+.btn-plain,
+.btn-danger,
+.btn-ghost {
+  border-radius: 16rpx;
+  font-size: 30rpx;
+  text-align: center;
+  line-height: 2.6;
+  border: none;
+}
+
+.btn-primary {
+  background: #12b76a;
+  color: #ffffff;
+}
+
+.btn-plain {
+  background: #e8f7ef;
+  color: #0b8f56;
+}
+
+.btn-danger {
+  background: #fdecea;
+  color: #d92d20;
+}
+
+.btn-ghost {
+  background: #ffffff;
+  color: #4b5563;
+  border: 1rpx solid #d9dee5;
+}
+
+.btn-disabled {
+  opacity: 0.5;
+}
+
+.field {
+  margin-bottom: 28rpx;
+}
+
+.field-label {
+  font-size: 26rpx;
+  color: #4b5563;
+  margin-bottom: 12rpx;
+  display: block;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: #f6f7f9;
+  border-radius: 16rpx;
+  padding: 20rpx 24rpx;
+  font-size: 30rpx;
+}
+
+.textarea {
+  min-height: 160rpx;
+}
+
+.empty {
+  text-align: center;
+  color: #8a8f99;
+  padding: 120rpx 0;
+  font-size: 26rpx;
+}
+
+.loading {
+  text-align: center;
+  color: #8a8f99;
+  padding: 60rpx 0;
+}

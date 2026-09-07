@@ -1,0 +1,47 @@
+.avatar-text {
+  color: #0b8f56;
+  font-size: 36rpx;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.edit-btn {
+  padding: 0 28rpx;
+  font-size: 26rpx;
+}
+
+.stat-row {
+  display: flex;
+  margin-top: 32rpx;
+}
+
+.stat {
+  flex: 1;
+  text-align: center;
+}
+
+.stat-num {
+  font-size: 40rpx;
+  font-weight: 700;
+}
+
+.my-post {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #f2f3f5;
+}
+
+.my-post:last-child {
+  border-bottom: none;
+}
+
+.nearby-btn {
+  color: #0b8f56;
+  font-size: 26rpx;
+}

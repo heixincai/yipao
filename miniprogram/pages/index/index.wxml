@@ -1,0 +1,49 @@
+<view class="page">
+  <view class="card">
+    <view class="row-between">
+      <view class="row">
+        <view
+          class="scope-btn {{scope === 'spots' ? 'scope-active' : ''}}"
+          data-scope="spots"
+          bindtap="onScopeChange"
+        >我的跑点</view>
+        <view
+          class="scope-btn {{scope === 'city' ? 'scope-active' : ''}}"
+          data-scope="city"
+          bindtap="onScopeChange"
+        >全杭州</view>
+      </view>
+      <view class="nearby-btn" bindtap="locateNearby">找离我近的</view>
+    </view>
+    <view wx:if="{{profileIncomplete}}" class="hint" bindtap="goProfile">
+      完善常跑点资料后，这里会优先显示你的跑点。
+    </view>
+  </view>
+
+  <view wx:if="{{posts.length === 0 && !loading}}" class="empty">
+    暂时没有正在招募的约跑，点下方「发布」发起第一场吧
+  </view>
+
+  <view wx:for="{{posts}}" wx:key="_id" class="card" bindtap="openPost" data-id="{{item._id}}">
+    <view class="row-between">
+      <view class="tag">{{item.statusText}}</view>
+      <text class="muted">{{item.timeLeftText}}</text>
+    </view>
+    <view class="title">{{item.spot.name}}</view>
+    <view class="subtitle">{{item.startText}} · {{item.participantText}}</view>
+    <view class="row" style="margin-top: 20rpx;">
+      <text class="tag">{{item.mileageBand}}</text>
+      <text class="tag">{{item.intensityLevel}}</text>
+    </view>
+    <view wx:if="{{item.description}}" class="subtitle">{{item.description}}</view>
+    <view class="row" style="margin-top: 20rpx;">
+      <view class="avatar mini-avatar row-center">
+        <image wx:if="{{item.organizer.avatarUrl}}" class="avatar-img" src="{{item.organizer.avatarUrl}}" />
+        <text wx:else>{{item.organizer.avatarInitial}}</text>
+      </view>
+      <text style="margin-left: 16rpx;">{{item.organizer.nickname || '跑者'}} 发起</text>
+    </view>
+  </view>
+
+  <view wx:if="{{loading}}" class="loading">加载中…</view>
+</view>

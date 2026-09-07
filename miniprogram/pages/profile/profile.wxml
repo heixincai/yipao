@@ -1,0 +1,53 @@
+<view class="page">
+  <view class="card" wx:if="{{profile}}">
+    <view class="row">
+      <view class="avatar row-center">
+        <image wx:if="{{profile.avatarUrl}}" class="avatar-img" src="{{profile.avatarUrl}}" />
+        <text wx:else class="avatar-text">{{profile.avatarInitial}}</text>
+      </view>
+      <view style="margin-left: 24rpx; flex: 1;">
+        <view class="title">{{profile.nickname || '未命名跑者'}}</view>
+        <view class="muted">{{profile.intro || '完善一句介绍，让别人更愿意和你跑'}}</view>
+      </view>
+      <view class="btn-plain edit-btn" bindtap="goEdit">编辑</view>
+    </view>
+
+    <view class="stat-row">
+      <view class="stat">
+        <view class="stat-num">{{profile.runCount || 0}}</view>
+        <view class="muted">完成约跑</view>
+      </view>
+      <view class="stat">
+        <view class="stat-num">{{profile.absenceCount || 0}}</view>
+        <view class="muted">爽约次数</view>
+      </view>
+    </view>
+
+    <view wx:if="{{incomplete}}" class="btn-primary" bindtap="goEdit" style="margin-top: 24rpx;">
+      完善资料后即可发布和加入约跑
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="row-between">
+      <view class="title" style="font-size: 30rpx;">我发起的 / 我加入的</view>
+      <view class="nearby-btn" bindtap="requestSpot">申请新跑点</view>
+    </view>
+    <view wx:if="{{myPosts.length === 0 && !loading}}" class="muted" style="margin-top: 20rpx;">
+      还没有参与任何约跑
+    </view>
+    <view
+      wx:for="{{myPosts}}"
+      wx:key="_id"
+      class="my-post"
+      bindtap="openPost"
+      data-id="{{item._id}}"
+    >
+      <view>
+        <view>{{item.spotName}}</view>
+        <view class="muted">{{item.startText}}</view>
+      </view>
+      <text class="tag">{{item.statusText}}</text>
+    </view>
+  </view>
+</view>

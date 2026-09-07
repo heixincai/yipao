@@ -1,0 +1,39 @@
+.avatar-btn {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #f0f2f5;
+  color: #8a8f99;
+  font-size: 24rpx;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-preview {
+  width: 100%;
+  height: 100%;
+}
+
+.spot-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.spot-chip {
+  padding: 14rpx 26rpx;
+  border-radius: 999rpx;
+  background: #f0f2f5;
+  color: #4b5563;
+  font-size: 24rpx;
+  border: 2rpx solid transparent;
+}
+
+.spot-active {
+  background: #e8f7ef;
+  color: #0b8f56;
+  border-color: #12b76a;
+}

@@ -1,0 +1,62 @@
+<view class="page">
+  <view wx:if="{{profileIncomplete}}" class="card empty-card">
+    <view>发布前需要先完善跑者资料</view>
+    <view class="btn-primary" style="margin-top: 24rpx;" bindtap="goEdit">去完善资料</view>
+  </view>
+
+  <block wx:else>
+    <view class="card">
+      <view class="field">
+        <text class="field-label">跑点</text>
+        <picker range="{{spots}}" range-key="name" bindchange="onSpotChange">
+          <view class="input {{spotIndex < 0 ? 'placeholder' : ''}}">
+            {{spotIndex < 0 ? '请选择受管跑点' : spots[spotIndex].name}}
+          </view>
+        </picker>
+      </view>
+
+      <view class="field">
+        <text class="field-label">开跑日期</text>
+        <picker range="{{dates}}" bindchange="onDateChange">
+          <view class="input">{{dates[dateIndex]}}</view>
+        </picker>
+      </view>
+
+      <view class="field">
+        <text class="field-label">开跑时间</text>
+        <picker range="{{times}}" bindchange="onTimeChange">
+          <view class="input">{{times[timeIndex]}}</view>
+        </picker>
+      </view>
+
+      <view class="field">
+        <text class="field-label">人数上限（含你）</text>
+        <slider min="2" max="5" step="1" value="{{participantsLimit}}" show-value bindchange="onLimitChange" />
+      </view>
+
+      <view class="field">
+        <text class="field-label">里程档</text>
+        <picker range="{{mileageBands}}" bindchange="onMileageChange">
+          <view class="input">{{mileageBands[mileageIndex]}}</view>
+        </picker>
+      </view>
+
+      <view class="field">
+        <text class="field-label">强度档</text>
+        <picker range="{{intensityLevels}}" bindchange="onIntensityChange">
+          <view class="input">{{intensityLevels[intensityIndex]}}</view>
+        </picker>
+      </view>
+
+      <view class="field">
+        <text class="field-label">补充说明（可选）</text>
+        <textarea class="textarea" placeholder="例如：配速随意，第一次来可以走跑结合" value="{{description}}" bindinput="onDescriptionInput" maxlength="200" />
+      </view>
+
+      <view class="btn-primary {{submitting ? 'btn-disabled' : ''}}" bindtap="submit">发布约跑</view>
+      <view class="muted" style="margin-top: 16rpx; text-align: center;">
+        发布后时间与跑点不可修改；改期需取消后重发。
+      </view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,41 @@
+.scope-btn {
+  padding: 12rpx 28rpx;
+  border-radius: 999rpx;
+  background: #f0f2f5;
+  color: #4b5563;
+  font-size: 26rpx;
+  margin-right: 16rpx;
+}
+
+.scope-active {
+  background: #e8f7ef;
+  color: #0b8f56;
+  font-weight: 600;
+}
+
+.nearby-btn {
+  color: #0b8f56;
+  font-size: 26rpx;
+}
+
+.hint {
+  margin-top: 20rpx;
+  color: #8a8f99;
+  font-size: 24rpx;
+}
+
+.mini-avatar {
+  width: 48rpx;
+  height: 48rpx;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0b8f56;
+  font-size: 24rpx;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+}

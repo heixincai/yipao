@@ -1,0 +1,116 @@
+<view class="page" wx:if="{{post}}">
+  <view class="card">
+    <view class="row-between">
+      <view class="tag">{{post.statusText}}</view>
+      <text class="muted">{{post.timeLeftText}}</text>
+    </view>
+    <view class="title">{{post.spot.name}}</view>
+    <view class="subtitle">{{post.startText}} · {{post.participantText}}</view>
+    <view class="row" style="margin-top: 16rpx;">
+      <text class="tag">{{post.mileageBand}}</text>
+      <text class="tag">{{post.intensityLevel}}</text>
+    </view>
+    <view wx:if="{{post.description}}" class="subtitle" style="margin-top: 16rpx;">{{post.description}}</view>
+
+    <view class="divider"></view>
+
+    <view class="row-between">
+      <view class="row">
+        <view class="avatar row-center">
+          <image wx:if="{{post.organizer.avatarUrl}}" class="avatar-img" src="{{post.organizer.avatarUrl}}" />
+          <text wx:else>{{post.organizer.avatarInitial}}</text>
+        </view>
+        <view style="margin-left: 20rpx;">
+          <view>{{post.organizer.nickname || '跑者'}}（发起人）</view>
+          <view class="muted">{{post.organizer.intro || '这个人很懒，还没写介绍'}}</view>
+        </view>
+      </view>
+      <text wx:if="{{isOrganizer}}" class="me-tag">我</text>
+    </view>
+
+    <view class="participant" wx:for="{{post.participants}}" wx:key="openid">
+      <view class="row">
+        <view class="avatar row-center">
+          <image wx:if="{{item.avatarUrl}}" class="avatar-img" src="{{item.avatarUrl}}" />
+          <text wx:else>{{item.avatarInitial}}</text>
+        </view>
+        <view style="margin-left: 20rpx;">
+          <view>{{item.nickname || '跑者'}}</view>
+          <view class="muted">{{item.intro || '这个人很懒，还没写介绍'}}</view>
+        </view>
+      </view>
+      <text wx:if="{{item.openid === profile._openid}}" class="me-tag">我</text>
+    </view>
+  </view>
+
+  <view wx:if="{{post.canJoin}}" class="btn-primary action-btn" bindtap="join">加入这场约跑</view>
+  <view wx:if="{{post.canLeave}}" class="btn-danger action-btn" bindtap="leave">退出约跑</view>
+
+  <block wx:if="{{post.canManage}}">
+    <view wx:if="{{!attendanceMode}}" class="row action-row">
+      <view class="btn-ghost action-half" bindtap="toggleJoinClosed">
+        {{post.joinClosed ? '恢复加入' : '停止加入'}}
+      </view>
+      <view class="btn-danger action-half" bindtap="cancelPost">取消约跑</view>
+    </view>
+    <view wx:if="{{post.canFinish && !attendanceMode}}" class="btn-primary action-btn" bindtap="openAttendance">
+      结束并确认到场
+    </view>
+  </block>
+
+  <view wx:if="{{attendanceMode}}" class="card">
+    <view class="title" style="font-size: 30rpx;">确认到场名单</view>
+    <view class="muted" style="margin-top: 8rpx;">发起人默认为到场。跑完的成员请勾选。</view>
+    <view
+      wx:for="{{attendance}}"
+      wx:key="openid"
+      class="row-between attendee"
+      data-index="{{index}}"
+      bindtap="toggleAttendee"
+    >
+      <view>{{item.nickname || '跑者'}}</view>
+      <view class="{{item.checked ? 'checked' : 'unchecked'}}">{{item.checked ? '到场' : '未到'}}</view>
+    </view>
+    <view class="row action-row">
+      <view class="btn-ghost action-half" bindtap="cancelAttendance">返回</view>
+      <view class="btn-primary action-half" bindtap="finish">确认并结束</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="row-between">
+      <view class="title" style="font-size: 30rpx;">帖内动态</view>
+      <text class="muted">跑前沟通都在这里</text>
+    </view>
+    <view wx:if="{{!post.comments || post.comments.length === 0}}" class="muted" style="margin-top: 20rpx;">
+      还没有动态，加入后可以在这里留言。
+    </view>
+    <view wx:for="{{post.comments}}" wx:key="createdAt" class="comment">
+      <view class="row">
+        <view class="avatar row-center comment-avatar">
+          <image wx:if="{{item.avatarUrl}}" class="avatar-img" src="{{item.avatarUrl}}" />
+          <text wx:else>{{item.avatarInitial}}</text>
+        </view>
+        <view style="margin-left: 16rpx; flex: 1;">
+          <view class="row-between">
+            <text>{{item.nickname || '跑者'}}</text>
+            <text class="muted">{{item.timeText}}</text>
+          </view>
+          <view style="margin-top: 8rpx;">{{item.text}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="row comment-editor">
+      <textarea
+        class="input comment-input"
+        placeholder="留言给发起人和其他参与者"
+        value="{{commentText}}"
+        bindinput="onCommentInput"
+        maxlength="200"
+      />
+      <view class="btn-plain send-btn" bindtap="sendComment">发送</view>
+    </view>
+  </view>
+</view>
+
+<view wx:else class="empty">帖子不存在或已删除</view>
