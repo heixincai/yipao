@@ -14,6 +14,17 @@ Page({
     this.load()
   },
 
+  // 下拉刷新：重新拉取跑点与约跑帖列表
+  async onPullDownRefresh() {
+    try {
+      await this.load()
+    } catch (err) {
+      console.error('pull down refresh failed', err)
+    } finally {
+      wx.stopPullDownRefresh()
+    }
+  },
+
   async load() {
     const profile = await app.ensureLogin()
     if (!profile) {

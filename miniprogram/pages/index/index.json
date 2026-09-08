@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "发现约跑"
+  "navigationBarTitleText": "发现约跑",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "onReachBottomDistance": 0
 }
